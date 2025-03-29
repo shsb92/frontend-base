@@ -14,24 +14,28 @@ This project serves as a foundational setup for modern frontend applications usi
 
 ```
 frontend-base/
-├── dist/                # Build output directory (generated)
-├── node_modules/        # Project dependencies (managed by npm)
-├── public/
-│   └── index.html       # HTML template used by Webpack
+├── dist/                   # Build output directory (generated)
+├── node_modules/           # Project dependencies (managed by npm)
+├── public/                 # Static assets directory
+│   └── index.html          # HTML template used by Webpack
 ├── src/
-│   ├── components/      # Directory for reusable UI components (if needed)
-│   │   └── .gitkeep
-│   ├── styles/
-│   │   └── index.css    # Main CSS file with Tailwind directives
-│   └── index.ts         # Main TypeScript entry point
-├── .gitignore           # Specifies intentionally untracked files
-├── package.json         # Project metadata and dependencies
-├── package-lock.json    # Exact dependency versions
-├── postcss.config.js    # PostCSS configuration (for Tailwind)
-├── server.js            # Express server for SPA routing
-├── tailwind.config.js   # Tailwind CSS configuration
-├── tsconfig.json        # TypeScript compiler options
-└── webpack.config.js    # Webpack configuration
+│   ├── components/         # Reusable UI components
+│   ├── interfaces/         # TypeScript interfaces and types
+│   ├── pages/              # Page components and views
+│   ├── router/             # Routing configuration and setup
+│   ├── states/             # State management (e.g., Redux, Context)
+│   ├── styles/             # Global styles and CSS modules
+│   ├── utils/              # Utility functions and helpers
+│   └── index.ts            # Main TypeScript entry point
+├── .gitignore              # Specifies intentionally untracked files
+├── LICENSE                 # Project license
+├── package.json            # Project metadata and dependencies
+├── package-lock.json       # Exact dependency versions
+├── postcss.config.mjs      # PostCSS configuration (for Tailwind)
+├── server.js               # Express server for SPA routing
+├── tailwind.config.js      # Tailwind CSS configuration
+├── tsconfig.json           # TypeScript compiler options
+└── webpack.config.js       # Webpack configuration
 ```
 
 ## Available Scripts
