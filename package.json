@@ -1,0 +1,43 @@
+{
+  "name": "frontend-base",
+  "version": "1.0.0",
+  "description": "This will serve as the base to all frontend-projects I will build in the future",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --mode=development",
+    "build": "webpack --mode=production",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shsb92/frontend-base.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shsb92/frontend-base/issues"
+  },
+  "homepage": "https://github.com/shsb92/frontend-base#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.17",
+    "autoprefixer": "^10.4.21",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "postcss": "^8.5.3",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.1.5",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^4.0.17",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  }
+}
