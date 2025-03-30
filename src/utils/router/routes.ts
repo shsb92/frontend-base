@@ -10,7 +10,7 @@ export const Routes: RoutesMap = {
     view: () => import('@pages/login'),
     needsLogin: false, 
   },
-  '/': { 
+  '/home': { 
     title: 'Home', 
     view: () => import('@pages/home'),
     needsLogin: true, 
@@ -24,6 +24,6 @@ export const Routes: RoutesMap = {
 };
 
 // Define default routes
-export const DefaultRoute = '/';
-export const DefaultLoggedInRoute = '/';
+export const DefaultRoute = '/home';
+export const DefaultLoggedInRoute = '/home';
 export const DefaultLoggedOutRoute = '/login';

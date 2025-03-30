@@ -14,14 +14,14 @@ import {
   DefaultRoute,
   DefaultLoggedInRoute, 
   DefaultLoggedOutRoute,
-} from '@router/routes';
+} from '@/utils/router/routes';
 
 // --- State Variables ---
 let currentPage: PageComponent | null = null;
 const subscribers: RouterSubscriber[] = [];
+let isAuthenticated = true; // Add authentication state
 
 // --- Helper Functions ---
-
 /** Notifies all subscribers about the current page component and title. */
 const notifySubscribers = (
   pageComponent: PageComponent | null,
@@ -73,33 +73,33 @@ const handleURLToken = (): void => {
   }
 };
 
-/** Determines the correct route path based on login status, admin rights, and requested path. (Simplified) */
-const parseRouteName = (path: string): string => {
-  // const isLoggedIn = !!tokenGetter(); // Removed login check for now
+/** Resolves the final route path based on authentication status and requested path */
+const resolveRoute = (path: string): string => {
   const requestedPath = path === '/' || path === '' ? DefaultRoute : path;
-
-  const routeDefinition = Routes[requestedPath];
-
-  // 1. Route doesn't exist -> 404
-  if (!routeDefinition) {
-    return '/404';
+  
+  const route = Routes[requestedPath];
+  if (!route || path === '/404') return '/404';
+  
+  if (route.needsLogin && !isAuthenticated) {
+    return DefaultLoggedOutRoute;
   }
-  if (path === '/') {
-    return DefaultRoute;
+  
+  if (!route.needsLogin && isAuthenticated) {
+    return DefaultLoggedInRoute;
   }
+  
   return requestedPath;
 };
 
-// --- Core Router Function ---
 
-/** Main router function: resolves route, fetches data, loads component, notifies subs. (Simplified) */
+/** Main router function: resolves route, fetches data, loads component, notifies subs. */
 const router = async (): Promise<void> => {
   if (typeof window === 'undefined') return;
 
   handleURLToken();
 
   const currentPath = window.location.pathname;
-  const targetRouteName = parseRouteName(currentPath); 
+  const targetRouteName = resolveRoute(currentPath); 
 
   if (targetRouteName !== currentPath) {
     console.log(`Redirecting from ${currentPath} to ${targetRouteName}`);
@@ -116,7 +116,7 @@ const router = async (): Promise<void> => {
   }
   currentPage = null; // Reset current page
 
-   const routeDefinition = Routes[targetRouteName] ?? Routes['/404'];
+   const routeDefinition = Routes[targetRouteName.toLowerCase()] ?? Routes['/404'];
 
   let pageInstance: PageComponent | null = null;
   let title = routeDefinition.title;

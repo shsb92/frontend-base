@@ -1,29 +1,22 @@
-// src/pages/login/index.ts
 import type { PageComponent } from '@interfaces/page';
-import { route } from '@router/router';
+import { route } from '@/utils/router';
+import { renderer, DOMElement } from '@/utils';
 
-export default class LoginPage implements PageComponent {
-  private rootElement: HTMLElement | null;
+export default class LoginPage extends DOMElement implements PageComponent {
 
   constructor() {
+    super(document.createElement('div'));
     console.log('Login Page loaded');
-    this.rootElement = document.getElementById('root');
     this.render();
   }
 
   private render() {
-    if (this.rootElement) {
-      this.rootElement.innerHTML = `
-        <div class="p-4">
-          <h1 class="text-2xl font-bold mb-4">Login Page</h1>
-          <p class="mb-4">Please log in.</p>
-          <button id="login-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Simulate Login (Go Home)
-          </button>
-        </div>
-      `;
-      this.rootElement.querySelector('#login-button')?.addEventListener('click', this.handleLogin);
-    }
+    this.setClass('min-h-screen flex items-center justify-center bg-gray-100');
+    this.add(new DOMElement(document.createElement('h1')).setTextContent('Login'));
+    this.add(new DOMElement(document.createElement('input')).setType('text').setPlaceholder('Username'));
+    this.add(new DOMElement(document.createElement('input')).setType('password').setPlaceholder('Password'));
+    this.add(new DOMElement(document.createElement('button')).setTextContent('Login').onClick(this.handleLogin));
+    renderer.render(this);
   }
 
   private handleLogin = () => {
@@ -34,9 +27,6 @@ export default class LoginPage implements PageComponent {
 
   dispose() {
     console.log('Login Page disposed');
-    this.rootElement?.querySelector('#login-button')?.removeEventListener('click', this.handleLogin);
-    if (this.rootElement) {
-      this.rootElement.innerHTML = '';
-    }
+    renderer.render(null);
   }
 }

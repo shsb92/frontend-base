@@ -1,29 +1,22 @@
-// src/pages/404/index.ts
+import { renderer, DOMElement } from '@/utils';
 import type { PageComponent } from '@interfaces/page';
-import { route } from '@router/router';
+import { route } from '@utils/router';
 
-export default class NotFoundPage implements PageComponent {
-  private rootElement: HTMLElement | null;
+export default class NotFoundPage extends DOMElement implements PageComponent {
 
   constructor() {
+    super(document.createElement('div'));
     console.log('404 Page loaded');
-    this.rootElement = document.getElementById('root');
     this.render();
   }
 
   private render() {
-    if (this.rootElement) {
-      this.rootElement.innerHTML = `
-        <div class="p-4 text-center">
-          <h1 class="text-4xl font-bold text-red-600 mb-4">404</h1>
-          <p class="mb-4">Oops! Page not found.</p>
-          <button id="home-button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-            Go Back Home
-          </button>
-        </div>
-      `;
-      this.rootElement.querySelector('#home-button')?.addEventListener('click', this.goHome);
-    }
+    this.setClass('p-4 text-center');
+    this.setTextContent('404 Page'); 
+    this.add(new DOMElement(document.createElement('h1')).setTextContent('404 Page'));
+    this.add(new DOMElement(document.createElement('p')).setTextContent('Oops! Page not found.'));
+    this.add(new DOMElement(document.createElement('button')).setTextContent('Go Back Home').onClick(this.goHome));
+    renderer.render(this);
   }
 
   private goHome = () => {
@@ -32,9 +25,6 @@ export default class NotFoundPage implements PageComponent {
 
   dispose() {
     console.log('404 Page disposed');
-    this.rootElement?.querySelector('#home-button')?.removeEventListener('click', this.goHome);
-    if (this.rootElement) {
-      this.rootElement.innerHTML = '';
-    }
+    renderer.render(null);
   }
 }

@@ -1,0 +1,18 @@
+{
+  "common": {
+    "welcome": "Willkommen",
+    "loading": "Laden...",
+    "error": "Ein Fehler ist aufgetreten",
+    "retry": "Wiederholen"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "accessibility": {
+    "skipToMain": "Zum Hauptinhalt springen",
+    "menu": "Menü",
+    "closeMenu": "Menü schließen"
+  }
+} 
