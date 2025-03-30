@@ -99,6 +99,14 @@ export class DOMElement {
   
     setInnerHTML(value: string) {
       this.dom.innerHTML = value;
+      return this;
+    }
+  
+    reset() {
+      if (this.dom instanceof HTMLFormElement) {
+        this.dom.reset();
+      }
+      return this;
     }
   
     getIndexOfChild(element: DOMElement) {

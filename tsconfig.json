@@ -22,7 +22,6 @@
       "@components/*": ["src/components/*"],
       "@interfaces/*": ["src/interfaces/*"],
       "@pages/*": ["src/pages/*"],
-      "@router/*": ["src/utils/router/*"],
       "@states/*": ["src/states/*"],
       "@styles/*": ["src/styles/*"],
       "@test/*": ["src/test/*"],

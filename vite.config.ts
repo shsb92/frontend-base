@@ -13,7 +13,6 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components'),
       '@interfaces': path.resolve(__dirname, './src/interfaces'),
       '@pages': path.resolve(__dirname, './src/pages'),
-      '@router': path.resolve(__dirname, './src/router'),
       '@states': path.resolve(__dirname, './src/states'),
       '@styles': path.resolve(__dirname, './src/styles'),
       '@test': path.resolve(__dirname, './src/test'),
@@ -28,12 +27,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['axios'],
-        },
-      },
-    },
   },
 }) 
