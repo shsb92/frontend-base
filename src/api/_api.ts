@@ -18,7 +18,7 @@ const apiConfig: ApiConfig = {
   defaultHeaders: {
     'Content-Type': 'application/json',
   },
-  timeout: 30000, // 30 seconds default timeout
+  timeout: 30000,
 };
 
 /**
